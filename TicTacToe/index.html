@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <div id="status">Current Turn: X</div>
+    <div id="board">
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+    </div>
+    <button id="resetButton" class="reset-button">Reset</button>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          const cells = document.querySelectorAll('[data-cell]');
+          const statusDisplay = document.getElementById('status');
+          const resetButton = document.getElementById('resetButton');
+          let isXTurn = true;
+          const WINNING_COMBINATIONS = [
+              [0, 1, 2],
+              [3, 4, 5],
+              [6, 7, 8],
+              [0, 3, 6],
+              [1, 4, 7],
+              [2, 5, 8],
+              [0, 4, 8],
+              [2, 4, 6]
+          ];
+  
+          function handleClick(event) {
+              const cell = event.target;
+              if (isXTurn) {
+                  placeMark(cell, 'x');
+                  if (checkWin('x')) {
+                      statusDisplay.innerText = 'X Wins!';
+                      endGame();
+                  } else if (isDraw()) {
+                      statusDisplay.innerText = 'Draw!';
+                      endGame();
+                  } else {
+                      isXTurn = false;
+                      updateStatus();
+                      setTimeout(computerTurn, 500); // Delay for computer's turn
+                  }
+              }
+          }
+  
+          function placeMark(cell, currentClass) {
+              cell.classList.add(currentClass);
+              cell.innerText = currentClass.toUpperCase();
+          }
+  
+          function swapTurns() {
+              isXTurn = !isXTurn;
+          }
+  
+          function updateStatus() {
+              const currentPlayer = isXTurn ? 'X' : 'O';
+              statusDisplay.innerText = `Current Turn: ${currentPlayer}`;
+          }
+
+          function checkWin(currentClass) {
+              return WINNING_COMBINATIONS.some(combination => {
+                  return combination.every(index => {
+                      return cells[index].classList.contains(currentClass);
+                  });
+              });
+          }
+
+          function isDraw() {
+              return [...cells].every(cell => {
+                  return cell.classList.contains('x') || cell.classList.contains('o');
+              });
+          }
+
+          function endGame() {
+              cells.forEach(cell => {
+                  cell.removeEventListener('click', handleClick);
+              });
+          }
+
+          function resetGame() {
+              cells.forEach(cell => {
+                  cell.classList.remove('x', 'o');
+                  cell.innerText = '';
+                  cell.addEventListener('click', handleClick, { once: true });
+              });
+              isXTurn = true;
+              updateStatus();
+          }
+
+          function computerTurn() {
+              statusDisplay.innerText = 'Computer\'s Turn...';
+              setTimeout(() => {
+                  const emptyCells = [...cells].filter(cell => !cell.classList.contains('x') && !cell.classList.contains('o'));
+                  if (emptyCells.length === 0) return;
+                  const bestMove = getBestMove();
+                  placeMark(cells[bestMove], 'o');
+                  if (checkWin('o')) {
+                      statusDisplay.innerText = 'O Wins!';
+                      endGame();
+                  } else if (isDraw()) {
+                      statusDisplay.innerText = 'Draw!';
+                      endGame();
+                  } else {
+                      isXTurn = true;
+                      updateStatus();
+                  }
+              }, 500); // Delay for computer's turn
+          }
+
+          function getBestMove() {
+              let bestScore = -Infinity;
+              let move;
+              cells.forEach((cell, index) => {
+                  if (!cell.classList.contains('x') && !cell.classList.contains('o')) {
+                      cell.classList.add('o');
+                      let score = minimax(cells, 0, false);
+                      cell.classList.remove('o');
+                      if (score > bestScore) {
+                          bestScore = score;
+                          move = index;
+                      }
+                  }
+              });
+              return move;
+          }
+
+          function minimax(cells, depth, isMaximizing) {
+              if (checkWin('o')) return 10 - depth;
+              if (checkWin('x')) return depth - 10;
+              if (isDraw()) return 0;
+
+              if (isMaximizing) {
+                  let bestScore = -Infinity;
+                  cells.forEach(cell => {
+                      if (!cell.classList.contains('x') && !cell.classList.contains('o')) {
+                          cell.classList.add('o');
+                          let score = minimax(cells, depth + 1, false);
+                          cell.classList.remove('o');
+                          bestScore = Math.max(score, bestScore);
+                      }
+                  });
+                  return bestScore;
+              } else {
+                  let bestScore = Infinity;
+                  cells.forEach(cell => {
+                      if (!cell.classList.contains('x') && !cell.classList.contains('o')) {
+                          cell.classList.add('x');
+                          let score = minimax(cells, depth + 1, true);
+                          cell.classList.remove('x');
+                          bestScore = Math.min(score, bestScore);
+                      }
+                  });
+                  return bestScore;
+              }
+          }
+  
+          resetButton.addEventListener('click', resetGame);
+  
+          cells.forEach(cell => {
+              cell.addEventListener('click', handleClick, { once: true });
+          });
+  
+          updateStatus(); // Initial status update
+      });
+  </script>
+</body>
+</html>
