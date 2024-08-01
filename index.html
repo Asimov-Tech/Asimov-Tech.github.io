@@ -37,15 +37,64 @@
           <a href="#" class="cta-button">Get Started</a>
         </div>
         <div class="stock-image">
-          <img src="Images\Fusion360.jpg" alt="Description of the image">
-          <!--Make this change images -->
+            <div class="slideshow">
+                <div class="slideshow-image">
+                    <!--Just a single image -->
+                    <!--<img src="Images\Fusion360.jpg" alt="Description of the image">-->
+                    
+        
+                    <!--Make this change images -->
+                    <img src="" id="slideshow-image" alt="Stock Image 1" style="width: 1300px; height: 600px;">
+                    <script type="text/javascript">
+                        let image = document.getElementById('slideshow-image');
+                        let currentImage = ['Images/Fusion360.jpg','Images/Code.png' ];
+                        setInterval(function(){
+                            let random = Math.floor(Math.random() * currentImage.length);
+                            image.src = currentImage[random];
+                        }, 2000);
+                    </script>
+                </div>
+
         
         </div>
       </div>
+    </div>
 
 
-
-    
+    <div class="services-section">
+        <div class="services-header">
+          <h2>Our Services</h2>
+          <p>Explore our range of offerings</p>
+          <a href="#" class="cta-button">View All</a>
+        </div>
+        <div class="services-grid">
+          <div class="service-item">
+            <div class="service-image">
+                <img src="Images/Fusion360.jpg" id="service-image-1" alt="Stock Image 1" style="width: 100%; height: auto;">
+            <span class="service-category">CAD Modelling</span>
+            </div>
+            <h3>Consulting</h3>
+            <p>Customized solutions for your business needs</p>
+          </div>
+          <div class="service-item">
+            <div class="service-image">
+              <div class="image-placeholder">Service Image</div>
+              <span class="service-category">Development</span>
+            </div>
+            <h3>Training</h3>
+            <p>Enhance your team's performance</p>
+          </div>
+          <div class="service-item">
+            <div class="service-image">
+              <div class="image-placeholder">Service Image</div>
+              <span class="service-category">Analytics</span>
+            </div>
+            <h3>Analysis</h3>
+            <p>Data-driven insights for growth</p>
+          </div>
+        </div>
+      </div>
+      
 
       
 
