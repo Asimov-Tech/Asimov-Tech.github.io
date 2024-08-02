@@ -22,9 +22,9 @@ body {
 .header a {
     color: rgb(255, 255, 255); /* White text color */
     text-align: center;
-    padding: 14px; /* Padding for spacing */
+    padding: 40px; /* Padding for spacing */
     text-decoration: none;
-    font-size: 18px;
+    font-size: 25px;
     line-height: 25px;
     background-color: black; /* Black background */
 }
@@ -33,7 +33,7 @@ body {
 .header a.logo {
     font-size: 25px;
     font-weight: bold;
-    line-height: 100px; /* Match the height of the header */
+    line-height: "auto"; /* Match the height of the header */
 }
 
 /* Change the background color on mouse-over */
@@ -51,12 +51,14 @@ body {
         float: none;
         display: block;
         text-align: left;
+        
     }
 }
 
 /* Scale down the logo */
 .logo {
-    scale: 0.5;
+    
+    margin-top: 20px;
 }
 
 /* Section-1 --------------------------------------------------------------------*/
@@ -118,6 +120,10 @@ body, h1, p, a, div {
     background-color: #f0f0f0; /* Slightly darker background on hover */
     color: #333; /* Darker text color on hover */
   }
+  
+
+
+
   
   /* Right image area styling */
   .stock-image {
@@ -248,7 +254,130 @@ body, h1, h2, h3, p, a, div {
   }
 
 
-/* Section-3 */
+/* Section-3 ---------------------------------------------------*/
+
+
+
+/* body, h1, h2, h3, p, a, div {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.insights-section {
+  background-color: #000;
+  color: #fff;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.insights-header {
+  margin-bottom: 40px;
+}
+
+.main-insight {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.insight-image {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+.image-placeholder {
+  background-color: #555;
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ddd;
+}
+
+.insight-content {
+  flex: 1;
+  min-width: 250px;
+}
+
+.insight-content h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.insight-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #fff;
+  color: #000;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.insights-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.insight-item {
+  display: flex;
+  flex: 1 1 45%;
+  margin-bottom: 20px;
+}
+
+.insight-details {
+  margin-left: 20px;
+  flex: 1;
+}
+
+.insight-item h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.insight-item p {
+  font-size: 16px;
+  color: #bbb;
+}
+
+@media (max-width: 768px) {
+  .main-insight {
+    flex-direction: column;
+  }
+
+  .insight-item {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .insight-details {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .insight-image {
+    margin-bottom: 10px;
+  }
+} */
 
 
 
@@ -256,10 +385,99 @@ body, h1, h2, h3, p, a, div {
 
 
 
+/* Section-4 */
 
+/* General Reset and Styling */
+body, h1, h2, h3, p, a, div {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+/* Container for the connect section */
+.connect-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text color */
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto; /* Center align in the middle of the page */
+  padding-top: 500px;
+}
 
+/* Profile section styling */
+.profile {
+  display: flex;
+  align-items: center;
+}
 
+.profile-image {
+  margin-right: 20px;
+}
+
+.image-placeholder {
+  background-color: #555; /* Placeholder color */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ddd; /* Placeholder text color */
+  font-size: 14px;
+  text-align: center;
+}
+
+.profile-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.role {
+  background-color: #444; /* Darker background for roles */
+  color: #fff; /* White text */
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+/* Button styling */
+.connect-button {
+  display: flex;
+  align-items: center;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #fff; /* White background */
+  color: #000; /* Black text color */
+  padding: 12px 24px;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+}
+
+.cta-button:hover {
+  background-color: #f0f0f0; /* Slightly darker background on hover */
+  color: #333; /* Darker text color on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .connect-section {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .connect-button {
+    margin-top: 20px;
+  }
+}
 
 
   
@@ -268,7 +486,7 @@ body, h1, h2, h3, p, a, div {
 html {
   height: 100%;
   width: 100%;
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  background: radial-gradient(ellipse at bottom, #000000 0%, #090a0f 100%);
 
 }
 
